@@ -19,7 +19,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Guideline en el centro de la pantalla -->
+
+    <Button
+        android:id="@+id/btnVerCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carrito"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCategorias"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_central"
         android:layout_width="wrap_content"
@@ -27,7 +38,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-    <!-- Spinner de categorías, debajo del Toolbar -->
+
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinnerCategorias"
         android:layout_width="0dp"
@@ -37,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/guideline_central"/>
 
-    <!-- RecyclerView para los productos debajo de la Guideline -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProductos"
         android:layout_width="0dp"
