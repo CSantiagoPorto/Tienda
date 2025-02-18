@@ -52,6 +52,7 @@ class Recycler_tiendaAdapter(
         // El click del carrito
         holder.botonAñadir.setOnClickListener {
             listener.onProductoAdd(producto)
+            //Este objeto implemeta la interfaz, invoca a su método y se aññade al Array
         }
     }fun actualizarLista(nuevaLista: List<Producto>) {
         listaProductos.clear()
