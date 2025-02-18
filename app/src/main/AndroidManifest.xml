@@ -16,7 +16,7 @@
 
         <!-- Declaración de la SecondActivity -->
         <activity
-            android:name=".SecondActivity"
+            android:name=".SecondActivity2"
             android:exported="true" />
 
         <!-- Declaración de la MainActivity como LAUNCHER -->

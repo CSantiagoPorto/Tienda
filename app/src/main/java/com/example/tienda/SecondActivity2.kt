@@ -7,7 +7,7 @@ import com.example.tienda.adapter.Recycler_tiendaAdapter
 import com.example.tienda.databinding.ActivitySecond2Binding
 import com.example.tienda.model.Producto
 
-class SecondActivity : AppCompatActivity() {
+class SecondActivity2 : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecond2Binding
     private lateinit var carrito: ArrayList<Producto>

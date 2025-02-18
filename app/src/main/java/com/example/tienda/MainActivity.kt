@@ -48,15 +48,17 @@ class MainActivity : AppCompatActivity(), Recycler_tiendaAdapter.OnProductoListe
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        // Inicializamos el adaptador del Spinner
+        adapterRecycler = Recycler_tiendaAdapter(listaProductos, this)
         adapterSpinnerCategoriasAdapter = SpinnerCategoriasAdapter(this, listaCategorias)
-        binding.spinnerCategorias.adapter = adapterSpinnerCategoriasAdapter
 
-        /*
-        Crea la lista de categorías.
-        Conecta el Adapter al Spinner.
-        Maneja la selección con un OnItemSelectedListener.
-        */
+
+        // Inicializamos el adaptador del RecyclerView
+        binding.recyclerProductos.layoutManager = LinearLayoutManager(this)
+        adapterRecycler = Recycler_tiendaAdapter(listaProductos, this)
+        binding.recyclerProductos.adapter = adapterRecycler
+
+        cargarCategorias()
+        cargarProductos()
     }
 
     private fun instancias() {
@@ -64,19 +66,6 @@ class MainActivity : AppCompatActivity(), Recycler_tiendaAdapter.OnProductoListe
         listaCategorias = arrayListOf()
         listaProductos = arrayListOf()
         carrito = ArrayList()
-
-        // Configuramos el adaptador del Spinner
-        adapterSpinnerCategoriasAdapter = SpinnerCategoriasAdapter(this, listaCategorias)
-        binding.spinnerCategorias.adapter = adapterSpinnerCategoriasAdapter
-
-        // >>>>>>>> CAMBIO: Configuro el RecyclerView y paso "this" como listener
-        adapterRecycler = Recycler_tiendaAdapter(listaProductos, this)
-        binding.recyclerProductos.adapter = adapterRecycler
-        binding.recyclerProductos.layoutManager = LinearLayoutManager(this)
-
-        // Cargamos las categorías y los productos desde la red
-        cargarCategorias()
-        cargarProductos()
     }
 
     private fun cargarCategorias() {
@@ -108,7 +97,6 @@ class MainActivity : AppCompatActivity(), Recycler_tiendaAdapter.OnProductoListe
             null,
             { response ->
                 val gson = Gson()
-                // Parseamos el array "products" a un Array de Producto
                 val productosArray = gson.fromJson(
                     response.getJSONArray("products").toString(),
                     Array<Producto>::class.java
@@ -129,26 +117,24 @@ class MainActivity : AppCompatActivity(), Recycler_tiendaAdapter.OnProductoListe
         adapterRecycler.actualizarLista(productosFiltrados)
     }
 
-    // >>>>>>>> CAMBIO: Implementación del método onProductoAdd para gestionar el carrito
+
     override fun onProductoAdd(producto: Producto) {
         carrito.add(producto)
         Snackbar.make(binding.root, "${producto.nombre} añadido al carrito", Snackbar.LENGTH_SHORT).show()
         Log.d("Carrito", "Producto añadido: ${producto.nombre}. Total en carrito: ${carrito.size}")
     }
 
-    // >>>>>>>> CAMBIO: Inflar el menú en MainActivity
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)  // Asegúrate de que el archivo se llame main_menu.xml o el nombre que hayas definido
+        menuInflater.inflate(R.menu.menu, menu)
         return true
     }
 
-    // >>>>>>>> CAMBIO: Manejar la selección del menú para "Ver Carrito"
+    //Con el intent hacemos los cambios
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_ver_carrito -> {
-                // Creamos el Intent para iniciar SecondActivity
-                val intent = Intent(this, SecondActivity::class.java)
-                // Pasamos el carrito. Recuerda que Producto debe implementar Serializable o Parcelable.
+                val intent = Intent(this, SecondActivity2::class.java)
                 intent.putExtra("carrito", carrito)
                 startActivity(intent)
                 true
