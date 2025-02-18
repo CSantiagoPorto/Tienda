@@ -11,8 +11,15 @@ import com.bumptech.glide.Glide
 import com.example.tienda.R
 import com.example.tienda.model.Producto
 
-class Recycler_tiendaAdapter(private var listaProductos: List<Producto>) :
-    RecyclerView.Adapter<Recycler_tiendaAdapter.MyHolder>() {
+class Recycler_tiendaAdapter(
+    private var listaProductos: MutableList<Producto>,
+    private val listener: OnProductoListener
+) : RecyclerView.Adapter<Recycler_tiendaAdapter.MyHolder>() {
+
+    // Interfaz de callback -> Esto va a notificar que se ha añadido producto al carrito
+    interface OnProductoListener {
+        fun onProductoAdd(producto: Producto)
+    }
 
     inner class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombre: TextView = itemView.findViewById(R.id.itemName)
@@ -37,18 +44,18 @@ class Recycler_tiendaAdapter(private var listaProductos: List<Producto>) :
         holder.nombre.text = producto.nombre
         holder.precio.text = "${producto.precio}€"
 
-        // Cargar la imagen con Glide
+        // DESCOMENTAR CUANDO METAS EL GLIDE
        // Glide.with(holder.itemView.context)
          //   .load(producto.imagen)
            //() .into(holder.imagen)
 
-        // Manejar clic en el botón "Añadir al carrito"
+        // El click del carrito
         holder.botonAñadir.setOnClickListener {
-            // Lógica para añadir al carrito (pendiente de implementar)
+            listener.onProductoAdd(producto)
         }
     }fun actualizarLista(nuevaLista: List<Producto>) {
-        (listaProductos as ArrayList<Producto>).clear()
-        (listaProductos as ArrayList<Producto>).addAll(nuevaLista)
+        listaProductos.clear()
+        listaProductos.addAll(nuevaLista)
         notifyDataSetChanged()
     }
 

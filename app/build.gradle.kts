@@ -40,10 +40,16 @@ android {
 
 dependencies {
 
+
+
     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
     implementation(libs.glide)
     // https://mvnrepository.com/artifact/com.android.volley/volley
     implementation(libs.volley)
+    implementation(libs.gson)
+
+
+
 
 
     implementation(libs.androidx.core.ktx)
