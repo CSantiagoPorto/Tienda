@@ -4,8 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_ver_carrito"
-        android:title="Ver Carrito"
+        android:id="@+id/menu_confirmar_compra"
+        android:title="Confirmar Compra"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_vaciar_carrito"
+        android:title="Vaciar Carrito"
         app:showAsAction="always" />
 
 </menu>

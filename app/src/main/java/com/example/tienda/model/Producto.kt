@@ -7,5 +7,5 @@ data class Producto(
     val nombre: String,
     val precio: Double,
     val categoria: String,
-    val thumbnail: String
-) : Serializable
+    val imagen: String
+) : Serializable//Necesito estopara el carrito

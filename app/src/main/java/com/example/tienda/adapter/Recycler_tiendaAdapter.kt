@@ -12,8 +12,8 @@ import com.example.tienda.R
 import com.example.tienda.model.Producto
 
 class Recycler_tiendaAdapter(
-    private var listaProductos: MutableList<Producto>,
-    private val listener: OnProductoListener
+    private var listaProductos: ArrayList<Producto>,
+    private var listener: OnProductoListener
 ) : RecyclerView.Adapter<Recycler_tiendaAdapter.MyHolder>() {
 
     // Interfaz de callback -> Esto va a notificar que se ha añadido producto al carrito
