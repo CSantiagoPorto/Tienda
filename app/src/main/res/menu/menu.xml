@@ -7,6 +7,10 @@
         android:id="@+id/menu_confirmar_compra"
         android:title="Confirmar Compra"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_ver_carrito"
+        android:title="Ver Carrito"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_vaciar_carrito"

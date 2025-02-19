@@ -47,6 +47,12 @@ class MainActivity : AppCompatActivity(), Recycler_tiendaAdapter.OnProductoListe
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+        binding.btnVerCarrito.setOnClickListener {
+            val intent = Intent(this, SecondActivity2::class.java)
+            intent.putExtra("carrito", carrito)
+            startActivity(intent)
+        }
+
 
         adapterRecycler = Recycler_tiendaAdapter(listaProductos, this)
         adapterSpinnerCategoriasAdapter = SpinnerCategoriasAdapter(this, listaCategorias)
@@ -54,7 +60,7 @@ class MainActivity : AppCompatActivity(), Recycler_tiendaAdapter.OnProductoListe
 
         // Inicializamos el adaptador del RecyclerView
         binding.recyclerProductos.layoutManager = LinearLayoutManager(this)
-        adapterRecycler = Recycler_tiendaAdapter(listaProductos, this)
+        //adapterRecycler = Recycler_tiendaAdapter(listaProductos, this)
         binding.recyclerProductos.adapter = adapterRecycler
 
         cargarCategorias()
@@ -113,7 +119,7 @@ class MainActivity : AppCompatActivity(), Recycler_tiendaAdapter.OnProductoListe
     }
 
     private fun actualizarListaProductos(categoria: String) {
-        val productosFiltrados = listaProductos.filter { it.categoria == categoria }
+        val productosFiltrados = listaProductos.filter { it.category == categoria }
         adapterRecycler.actualizarLista(productosFiltrados)
     }
 

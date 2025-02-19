@@ -44,10 +44,9 @@ class Recycler_tiendaAdapter(
         holder.nombre.text = producto.nombre
         holder.precio.text = "${producto.precio}€"
 
-        // DESCOMENTAR CUANDO METAS EL GLIDE
-       // Glide.with(holder.itemView.context)
-         //   .load(producto.imagen)
-           //() .into(holder.imagen)
+
+        Glide.with(holder.itemView.context).load(producto.imagen).into(holder.imagen)
+
 
         // El click del carrito
         holder.botonAñadir.setOnClickListener {

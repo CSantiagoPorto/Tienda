@@ -23,9 +23,11 @@ class SecondActivity2 : AppCompatActivity() {
         binding = ActivitySecond2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         // Recuperamos el carrito pasado desde MainActivity
         // Asegúrate de que Producto implementa Serializable
-        carrito = intent.getSerializableExtra("carrito") as ArrayList<Producto>
+        carrito = (intent.getSerializableExtra("carrito") as? ArrayList<Producto>) ?: arrayListOf()
+
 
         // Configuramos el RecyclerView
 
@@ -36,7 +38,9 @@ class SecondActivity2 : AppCompatActivity() {
 
         binding.recyclerCarrito.adapter = adapter
         binding.recyclerCarrito.layoutManager = LinearLayoutManager(this)
-        adapter.notifyDataSetChanged()
+       // adapter.notifyDataSetChanged()
+        adapter.actualizarLista(carrito)
+
 
 
         // Calculamos el total de la compra y lo mostramos en txtTotal
